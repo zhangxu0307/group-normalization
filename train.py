@@ -31,7 +31,7 @@ def train(model, batchSize, epoch, useCuda = False):
     if useCuda:
         model = model.cuda()
 
-    optimizer = optim.Adam(model.parameters(), lr=0.1)
+    optimizer = optim.Adam(model.parameters(), lr=0.05)
     ceriation = nn.CrossEntropyLoss()
     trainLoader, testLoader = loadMNIST(batchSize=batchSize)
 
@@ -73,10 +73,8 @@ def train(model, batchSize, epoch, useCuda = False):
                 print('==>>> epoch: {}, batch index: {}, test loss: {:.6f}, acc: {:.3f}'.format(
                     i, batch_idx + 1, sum_loss/batch_idx, correct_cnt * 1.0 / total_cnt))
 
-    th.save(model.state_dict(), model.name())
-
 if __name__ == '__main__':
 
     model = LeNet()
-    train(model, 128, 10)
+    train(model, 128, 5)
 

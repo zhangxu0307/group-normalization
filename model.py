@@ -14,16 +14,20 @@ class LeNet(nn.Module):
         self.fc3   = nn.Linear(84, 10)
         self.GN1 = GroupNormalization(6, 2)
         self.GN2 = GroupNormalization(16, 4)
+        self.BN1 = nn.BatchNorm2d(6)
+        self.BN2 = nn.BatchNorm2d(16)
 
     def forward(self, x):
 
         out = F.relu(self.conv1(x))
         out = F.max_pool2d(out, 2)
-        out = self.GN1(out)
+        #out = self.GN1(out)
+        out = self.BN1(out)
 
         out = F.relu(self.conv2(out))
         out = F.max_pool2d(out, 2)
-        out = self.GN2(out)
+        #out = self.GN2(out)
+        out = self.BN2(out)
 
         out = out.view(out.size(0), -1)
         out = F.relu(self.fc1(out))

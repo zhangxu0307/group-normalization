@@ -1,5 +1,7 @@
 # group-normalization
-This group normalization implemented by pytorch
+This is group normalization implemented by pytorch
+
+Toy test on LeNet-5 with MNIST
 
 Paper：Group Normalization
 arXiv：https://128.84.21.199/abs/1803.08494

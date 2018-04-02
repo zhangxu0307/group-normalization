@@ -60,7 +60,7 @@ def train(model, batchSize, epoch, useCuda = False):
         total_cnt = 0
         for batch_idx, (x, target) in enumerate(testLoader):
             if useCuda:
-                x, targe = x.cuda(), target.cuda()
+                x, target = x.cuda(), target.cuda()
             x, target = Variable(x, volatile=True), Variable(target, volatile=True)
             out = model(x)
             loss = ceriation(out, target)
